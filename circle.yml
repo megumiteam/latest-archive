@@ -10,5 +10,6 @@ test:
   override:
     - unzip -t wordpress.zip
   post:
+    - touch $CIRCLE_ARTIFACTS/`php -r 'include("webroot/wp-includes/version.php"); echo $wp_version;'`
     - mv wordpress.zip ${CIRCLE_ARTIFACTS}/
 
