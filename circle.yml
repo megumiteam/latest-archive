@@ -1,5 +1,14 @@
 ---
+dependencies:
+  pre:
+    - wget -nv https://wordpress.org/latest.zip
+    - unzip latest.zip
+    - mv wordpress webroot
+  override:
+    - zip -r wordpress.zip webroot wp.sql
 test:
   override:
-    - /bin/true
+    - unzip -t wordpress.zip
+  post:
+    - mv wordpress.zip ${CIRCLE_ARTIFACTS}/
 
